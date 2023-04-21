@@ -20,13 +20,13 @@
             {
                 Console.WriteLine(queue.Dequeue());
             }
-            */
+            
             BlanketCheckTest1();
             BlanketCheckTest2();
             BlanketCheckTest3();
             BlanketCheckTest4();
-
-
+            */
+            Josephus(7, 3);
 
         }
 
@@ -50,6 +50,28 @@
             }
             if(leftCount == rightCount) { return true; }
             else return false;
+        }
+
+        static void Josephus(int n, int k)
+        {
+            DataStructure.Queue<int> queue = new DataStructure.Queue<int>();
+            int count = 0;
+            for(int i = 1; i <= n; i++)
+            {
+                queue.Enqueue(i);
+            }
+            while(queue.Count != 0)
+            {
+                if(++count == k)
+                {
+                    Console.WriteLine(queue.Dequeue());
+                    count = 0;
+                }
+                else
+                {
+                    queue.Enqueue(queue.Dequeue());
+                }
+            }
         }
 
         static void BlanketCheckTest1()
