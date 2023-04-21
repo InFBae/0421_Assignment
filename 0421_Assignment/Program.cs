@@ -20,36 +20,57 @@
             {
                 Console.WriteLine(queue.Dequeue());
             }
-            
+            */
             BracketCheckTest1();
             BracketCheckTest2();
             BracketCheckTest3();
             BracketCheckTest4();
-            */
+            /*
             Josephus(7, 3);
-
+            */
         }
 
         static bool BracketCheck(DataStructure.Stack<string> stack)
         {
-            int leftCount = 0;
-            int rightCount = 0;
-            if (stack.Pop() != ")") return false;
-            else rightCount++;
+            int smallCount = 0;     // 소괄호 카운트
+            int mediumCount = 0;    // 중괄호 카운트
+            int largeCount = 0;     // 대과호 카운트
+            string temp = stack.Pop();
+            if (temp == ")")
+                smallCount++;
+            else if (temp == "}")
+                mediumCount++;
+            else if (temp == "]")
+                largeCount++;
+            else return false;
+
             while (stack.Count != 0)
             {
-                string temp = stack.Pop();
-                if(temp == ")")
+                temp = stack.Pop();
+                switch (temp)
                 {
-                    rightCount++;
-                }else if (temp == "(")
-                {
-                    leftCount++;
-                }
-               
+                    case ")":
+                        smallCount++;
+                        break;
+                    case "}":
+                        mediumCount++;
+                        break;
+                    case "]":
+                        largeCount++;
+                        break;
+                    case "(":
+                        smallCount--;
+                        break;
+                    case "{":
+                        mediumCount--;
+                        break;
+                    case "[":
+                        largeCount--;
+                        break;
+                }               
             }
-            if(leftCount == rightCount) { return true; }
-            else return false;
+            if(smallCount != 0 || mediumCount != 0 || largeCount != 0) { return false; }
+            else return true;
         }
 
         static void Josephus(int n, int k)
