@@ -22,6 +22,7 @@ namespace DataStructure
         }
         public T Pop()      // 리스트의 마지막 값을 temp에 저장 후 값 삭제 그리고 temp 반환
         {
+            if (list.Count == 0) { throw new InvalidOperationException(); }
             T temp = list[Count-1];
             list.RemoveAt(Count - 1);
             return temp;
