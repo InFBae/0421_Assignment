@@ -21,16 +21,16 @@
                 Console.WriteLine(queue.Dequeue());
             }
             
-            BlanketCheckTest1();
-            BlanketCheckTest2();
-            BlanketCheckTest3();
-            BlanketCheckTest4();
+            BracketCheckTest1();
+            BracketCheckTest2();
+            BracketCheckTest3();
+            BracketCheckTest4();
             */
             Josephus(7, 3);
 
         }
 
-        static bool BlanketCheck(DataStructure.Stack<string> stack)
+        static bool BracketCheck(DataStructure.Stack<string> stack)
         {
             int leftCount = 0;
             int rightCount = 0;
@@ -74,7 +74,7 @@
             }
         }
 
-        static void BlanketCheckTest1()
+        static void BracketCheckTest1()
         {
             DataStructure.Stack<string> stack = new DataStructure.Stack<string>();
             stack.Push("(");
@@ -82,9 +82,9 @@
             stack.Push("(");
             stack.Push(")");
 
-            Console.WriteLine(BlanketCheck(stack));
+            Console.WriteLine(BracketCheck(stack));
         }
-        static void BlanketCheckTest2()
+        static void BracketCheckTest2()
         {
             DataStructure.Stack<string> stack = new DataStructure.Stack<string>();
             stack.Push("(");
@@ -92,18 +92,18 @@
             stack.Push(")");
             stack.Push(")");
 
-            Console.WriteLine(BlanketCheck(stack));
+            Console.WriteLine(BracketCheck(stack));
         }
-        static void BlanketCheckTest3()
+        static void BracketCheckTest3()
         {
             DataStructure.Stack<string> stack = new DataStructure.Stack<string>();
             stack.Push("(");
             stack.Push(")");
             stack.Push(")");
 
-            Console.WriteLine(BlanketCheck(stack));
+            Console.WriteLine(BracketCheck(stack));
         }
-        static void BlanketCheckTest4()
+        static void BracketCheckTest4()
         {
             DataStructure.Stack<string> stack = new DataStructure.Stack<string>();
             stack.Push(")");
@@ -111,7 +111,7 @@
             stack.Push(")");
             stack.Push("(");
 
-            Console.WriteLine(BlanketCheck(stack));
+            Console.WriteLine(BracketCheck(stack));
         }
     }
 }
