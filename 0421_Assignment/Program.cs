@@ -20,11 +20,30 @@
             {
                 Console.WriteLine(queue.Dequeue());
             }
-            */
+            
             BracketCheckTest1();
             BracketCheckTest2();
             BracketCheckTest3();
             BracketCheckTest4();
+            */
+            List<Player> playerlist = new List<Player>();
+            for(int i = 0; i < 5; i++)
+            {
+                Random random = new Random();
+                playerlist.Add(new Player(random.Next(0, 100)));
+            }
+            foreach(Player player in playerlist)
+            {
+                Console.Write(player.Speed + "\t");
+            }
+            Console.WriteLine();
+            Queue<Player> players = new Queue<Player>();
+            players = new Player().ActionQueue(playerlist);
+            while(players.Count > 0)
+            {
+                Console.Write(players.Dequeue().Speed + "\t");
+            }
+            Console.WriteLine();
             /*
             Josephus(7, 3);
             */
@@ -34,7 +53,7 @@
         {
             int smallCount = 0;     // 소괄호 카운트
             int mediumCount = 0;    // 중괄호 카운트
-            int largeCount = 0;     // 대과호 카운트
+            int largeCount = 0;     // 대괄호 카운트
             string temp = stack.Pop();
             if (temp == ")")
                 smallCount++;
@@ -72,6 +91,33 @@
             if(smallCount != 0 || mediumCount != 0 || largeCount != 0) { return false; }
             else return true;
         }
+
+        class Player
+        {
+            private int speed;
+            public int Speed { get { return speed; } }
+
+            public Player() { this.speed = 0; }
+            public Player(int speed) { this.speed = speed; }
+
+            public Queue<Player> ActionQueue(List<Player> players)
+            {
+                Queue<Player> ActionQueue = new Queue<Player>();
+                players.Sort((Player a, Player b) =>
+                {
+                    if (a.Speed > b.Speed) return 1;
+                    else if (a.Speed < b.Speed) { return -1; }
+                    return 0;
+                });
+                foreach(Player p in players)
+                {
+                    ActionQueue.Enqueue(p);
+                }
+                return ActionQueue;
+            }
+        }
+
+
 
         static void Josephus(int n, int k)
         {
